@@ -50,6 +50,20 @@
                     <p class="card-description">
                         {{ post.body }}
                     </p>
+                    {% if comments.len <= 0 %}
+                    <div class="row mb-2">
+                        <div class="col-md">
+                            <span class="card-title">Comments</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md">
+                            {% for comment in comments %}
+                                <div class="badge badge-info badge-pill mb-2">{{ comment.body }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

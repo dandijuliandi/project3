@@ -1,3 +1,4 @@
+from operator import pos
 from django.http import JsonResponse
 from django.views.generic.list import ListView
 from django.shortcuts import redirect, render
@@ -18,8 +19,10 @@ class Create(ListView):
 class Show(ListView):
     def get(self, req, id):
         post = Post.objects.get(pk=id)
+        comments = Comment.objects.filter(post=post)
         context = {
-            'post': post
+            'post': post,
+            'comments': comments
         }
         return render(req, 'posts/show.html', context)
 
